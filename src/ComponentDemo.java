@@ -1,8 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,7 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
 
-public class ComponentDemo {
+public class ComponentDemo extends JFrame{
 	private JFrame frame;
 	// attributes for components
 	private JButton button;
@@ -21,8 +25,8 @@ public class ComponentDemo {
 	private int count = 0;
 	
 	public ComponentDemo(){
-		frame = new JFrame("Demo");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		super("Demo");
+		frame = this;
 		
 		initComponent();
 	}
@@ -51,6 +55,12 @@ public class ComponentDemo {
 		panel.add(label);
 		panel.add(counter);
 		panel.add(button);
+		
+		LayoutManager layout = new GridLayout(2, 3);
+		//LayoutManager layout = new FlowLayout();
+		frame.setLayout(layout);
+		frame.add(new JLabel("Express Yourself"));
+		frame.add(new JTextField(10));
 		frame.getContentPane().add(message, BorderLayout.SOUTH);
 		frame.getContentPane().add(name, BorderLayout.NORTH);
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -60,7 +70,7 @@ public class ComponentDemo {
 	}
 	
 	public void run(){
-		frame.setVisible(true);
+		this.setVisible(true);
 	}
 	
 	class ButtonListener implements ActionListener{
